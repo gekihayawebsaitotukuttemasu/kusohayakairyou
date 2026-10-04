@@ -75,17 +75,15 @@ span{
 </nav>
 
 <script>
-window.addEventListener("load", () => {
-  const nav = performance.getEntriesByType("navigation")[0];
+window.addEventListener("load", function () {
+    const nav = performance.getEntriesByType("navigation")[0];
 
-  if (!nav) {
     document.getElementById("time").textContent =
-      "リクエスト時間：取得できません";
-    return;
-  }
+        "navigationStart → responseEnd: " +
+        (nav.responseEnd - nav.startTime).toFixed(2) +
+        " ms";
 
-  document.getElementById("time").textContent =
-    "リクエスト時間：" + nav.duration.toFixed(2) + " ms";
+    console.log(nav);
 });
 </script>
 
